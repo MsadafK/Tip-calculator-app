@@ -1,0 +1,237 @@
+@import "variables";
+@import "mixins";
+@import "reset";
+@import "base";
+
+// Title styles
+.main {
+  &_mobile-title,
+  &_desktop-title {
+    letter-spacing: 5px;
+    font-size: 2rem;
+    color: map-get($colors, "very-dark-cyan");
+    margin: 1rem 0;
+  }
+
+  &_desktop-title {
+    display: none;
+  }
+}
+
+// Calculator styles
+.main__calculator {
+  background-color: map-get($colors, "white");
+  border-radius: 20px;
+  padding: 1rem;
+  text-align: left;
+
+  // Input containers
+  &__bill_input_container,
+  &__number_of_people_input_container {
+    position: relative;
+    margin: 2rem 0;
+
+    .label-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem; // Add some spacing between label and input
+    }
+
+    .input-wrapper {
+      position: relative;
+      width: 100%;
+    }
+  }
+
+  // Select tip container
+  &__select-tip-container {
+    margin: 2rem 0;
+  }
+
+  // Final container
+  &__final_container_box {
+    background-color: map-get($colors, "very-dark-cyan");
+    border-radius: 10px;
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+    text-align: left;
+    color: map-get($colors, "white");
+
+    &__tip_amount_box,
+    &__total_amount_box {
+      @include flex-between;
+      margin-bottom: 2rem;
+    }
+
+    &__reset_button {
+      display: block;
+      width: 100%;
+      padding: 1rem;
+      text-align: center;
+      background-color: map-get($colors, "strong-cyan");
+      color: map-get($colors, "very-dark-cyan");
+      font-weight: 700;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+
+      &:hover {
+        background-color: map-get($colors, "light-grayish-cyan");
+        color: map-get($colors, "very-dark-cyan");
+      }
+
+      &:disabled {
+        background-color: map-get($colors, "light-grayish-cyan");
+        color: map-get($colors, "dark-grayish-cyan");
+        cursor: not-allowed;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+// Input styles
+.bill_input_box,
+.number_of_people_input_box {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  background-color: map-get($colors, "very-light-grayish-cyan");
+  text-align: right;
+  border: none;
+}
+
+// Icon positioning
+.bill_input_dollor_icon,
+.number_of_people_input_people_icon {
+  position: absolute;
+  bottom: 15%;
+  left: 5%;
+}
+
+// Error message
+.error_message {
+  position: absolute;
+  top: 0;
+  right: 1rem;
+  color: orangered;
+  display: none;
+}
+
+// Tip grid
+.main__container__select-tip-container__tip-grid-box-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+// Tip input boxes
+.tip_input_box,
+.custom_tip_input_box {
+  background-color: map-get($colors, "very-dark-cyan");
+  color: map-get($colors, "white");
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 1rem;
+  text-align: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: map-get($colors, "light-grayish-cyan");
+    color: map-get($colors, "very-dark-cyan");
+  }
+}
+
+.custom_tip_input_box {
+  background-color: map-get($colors, "very-light-grayish-cyan");
+  color: map-get($colors, "very-dark-cyan");
+  border: none;
+  font-weight: 700;
+  text-align: right;
+}
+
+// Amount display styles
+.tip_amount_box__per_person_box,
+.total_amount_box__per_person_box {
+  font-size: 0.7rem;
+  color: map-get($colors, "light-grayish-cyan");
+}
+
+.tip_amount_box__amount_box,
+.total_amount_box__amount_box {
+  font-size: 2.25rem;
+  color: map-get($colors, "strong-cyan");
+  font-weight: 700;
+}
+
+// Responsive styles
+@include respond-to("mobile-large") {
+  * {
+    font-size: 18px;
+  }
+
+  .main {
+    margin: 1rem;
+
+    &_mobile-title,
+    &_desktop-title {
+      margin: 2rem 0;
+    }
+  }
+
+  .bill_input_box,
+  .number_of_people_input_box {
+    padding: 1rem;
+  }
+
+  .bill_input_dollor_icon,
+  .number_of_people_input_people_icon {
+    bottom: 1rem;
+    left: 1rem;
+  }
+}
+
+@include respond-to("tablet") {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .main__calculator {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+
+    &__bill_input_container,
+    &__select-tip-container,
+    &__number_of_people_input_container {
+      grid-column: 1/2;
+      margin: 0;
+    }
+
+    &__final_container_box {
+      grid-column: 2/3;
+      grid-row: 1/4;
+      margin: 0;
+      position: relative;
+
+      &__reset_button {
+        position: absolute;
+        width: 90%;
+        bottom: 2rem;
+        left: 5%;
+      }
+    }
+  }
+}
+
+@include respond-to("desktop") {
+  .main__container__select-tip-container__tip-grid-box-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

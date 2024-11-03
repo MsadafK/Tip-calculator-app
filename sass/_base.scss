@@ -1,0 +1,39 @@
+body {
+  overflow-x: hidden;
+  background-color: map-get($colors, "light-grayish-cyan");
+  color: map-get($colors, "grayish-cyan");
+  font-family: $font-family;
+  text-align: center;
+}
+
+input {
+  &:focus {
+    outline: none;
+    border: 2px solid map-get($colors, "strong-cyan");
+    cursor: pointer;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.skip-link {
+  &:focus {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto;
+    height: auto;
+    padding: 1rem;
+    background-color: map-get($colors, "white");
+    z-index: 9999;
+  }
+}
